@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        
+        #container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px;
+        }
+        
+        input,
+        button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .calculator {
+            background-color: rgb(73, 73, 177);
+            border-radius: 5px;
+            color: aliceblue;
+            cursor: pointer;
+        }
+        
+        .lorem {
+            color: rgb(66, 33, 33);
+            margin-right: 270px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <h2>Age Calculator</h2>
+        <label for="dob" class="lorem">Enter your DOB:</label>
+        <input type="date" id="dob">
+        <button onclick="calculateAge()" class="calculator">Calculate Age</button>
+        <h3 id="result"></h3>
+    </div>
+
+    <script>
+        function calculateAge() {
+            let dob = document.getElementById("dob").value;
+            if (dob === "") {
+                document.getElementById("result").innerText = "Please enter your birthdate!";
+                return;
+            }
+
+            let birthDate = new Date(dob);
+            let today = new Date();
+
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let monthDiff = today.getMonth() - birthDate.getMonth();
+
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            document.getElementById("result").innerText = You are $ {
+                age
+            }
+            years old.;
+        }
+    </script>
+
+</body>
+
+</html>
