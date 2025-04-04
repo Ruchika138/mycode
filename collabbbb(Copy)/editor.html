@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Document Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Collaborative Document Editor</h1>
+        <div class="document-options">
+            <div class="option" id="blank-doc">
+                <h2>Blank Document</h2>
+                <p>Start with a clean slate</p>
+            </div>
+            <div class="option" id="lined-doc">
+                <h2>Lined Document</h2>
+                <p>Notebook style with lines</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Editor Modal -->
+    <div id="editor-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 id="document-type-title">Document Editor</h2>
+                <p>Connected users: <span id="user-count">0</span></p>
+            </div>
+            <div class="modal-body">
+                <div id="editor" contenteditable="true"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
