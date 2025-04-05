@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collaborative Document Editor</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #6494edb0; /* Soft Blue */
+    }
+    .container {
+      background-color: #F7F7F7; /* Light Gray */
+    }
+    .document-options {
+      background-color: #fbf7f7; /* Very Light Gray */
+    }
+    .option {
+      background-color: #ddd6d685; /* Light Gray */
+    }
+    .option:hover {
+      background-color: #cfcac2; /* Lighter Gray */
+    }
+    #editor-modal {
+      background-color: #f1f6f6f6; /* White */
+    }
+    #editor {
+      background-color: #f4f1f1; /* Light Gray */
+    }
+    h1 {
+      color: #1b78a6; /* Blue */
+    }
+    h2 {
+      color: #dc17abec; /* Green */
+    }
+    p {
+      color: #100606; /* Dark Gray */
+    }
+    button {
+      background-color: #4CAF50; /* Green */
+      color: #040404; /* White */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Collaborative Document Editor</h1>
+    <div class="document-options">
+      <div class="option" id="blank-doc">
+        <h2>Blank Document</h2>
+        <p>Start with a clean slate</p>
+        <button id="create-blank-doc">Create Blank Document</button>
+      </div>
+      <div class="option" id="lined-doc">
+        <h2>Lined Document</h2>
+        <p>Notebook style with lines</p>
+        <button id="create-lined-doc">Create Lined Document</button>
+      </div>
+    </div>
+  </div>
+  <!-- Editor Modal -->
+  <div id="editor-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2 id="document-type-title">Document Editor</h2>
+        <p>Connected users: <span id="user-count">0</span></p>
+      </div>
+      <div class="modal-body">
+        <div id="editor" contenteditable="true"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Blank document button ka event listener
+    document.getElementById('create-blank-doc').addEventListener('click', function() {
+      var editorModal = document.getElementById('editor-modal');
+      editorModal.style.display = 'block';
+      // Blank document ka title aur content set karein
+      document.getElementById('document-type-title').innerText = 'Blank Document';
+      document.getElementById('editor').innerText = '';
+      // User ko connected users list mein add karein
+      var username = prompt('Enter your username:');
+      if (username) {
+        var userCount = document.getElementById('user-count');
+        var connectedUsers = [];
+        connectedUsers.push(username);
+        userCount.innerText = connectedUsers.length;
+      }
+    });
+    // Lined document button ka event listener
+    document.getElementById('create-lined-doc').addEventListener('click', function() {
+      var editorModal = document.getElementById('editor-modal');
+      editorModal.style.display = 'block';
+      // Lined document ka title aur content set karein
+      document.getElementById('document-type-title').innerText = 'Lined Document';
+      var editor = document.getElementById('editor');
+      editor.innerHTML = '';
+      // Lined document ke liye lines add karein
+      for (var i = 0; i < 20; i++) {
+        var line = document.createElement('div');
+        line.style.borderBottom = '1px solid #ccc';
+        line.style.height = '20px';
+        editor.appendChild(line);
+      }
+    });
+    // Editor modal ka close button ka event listener
+    document.querySelector('.close').addEventListener('click', function() {
+      var editorModal = document.getElementById('editor-modal');
+      editorModal.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
